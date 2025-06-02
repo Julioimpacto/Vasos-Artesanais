@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasos Artesanais do Wanderlei</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        nav {
+            position: fixed;
+            top: 2rem;
+            right: 5%;
+            z-index: 20;
+            background: transparent;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+        }
+        nav ul {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content: flex-end;
+            margin-right: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.25rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        nav a:hover {
+            color: rgba(255,255,255,0.8);
+        }
+        @media (min-width: 1280px) and (max-height: 800px) {
+            .hero h1 {
+                font-size: 3.5rem !important;
+            }
+            nav a {
+                font-size: 1.25rem;
+            }
+            nav ul {
+                gap: 3rem;
+            }
+        }
+        @media (min-width: 1024px) and (max-height: 600px) {
+            nav a {
+                font-size: 1rem;
+            }
+            nav ul {
+                gap: 2rem;
+            }
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                right: 5%;
+                max-width: 600px;
+            }
+            nav ul {
+                gap: 2rem;
+                justify-content: flex-end;
+                margin-right: 1.5rem;
+            }
+            nav a {
+                font-size: 1.1rem;
+            }
+        }
+        /* Mobile */
+        @media (max-width: 539px) {
+            .menu-mobile-btn {
+                display: flex;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: none;
+            }
+            nav.active {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            nav a {
+                font-size: 2rem;
+                text-align: center;
+                display: block;
+                padding: 0.5rem 0;
+            }
+        }
+        /* Tablets e iPads */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                right: 5%;
+                max-width: 600px;
+            }
+            nav ul {
+                gap: 2rem;
+                justify-content: flex-end;
+                margin-right: 1.5rem;
+            }
+            nav a {
+                font-size: 1.1rem;
+            }
+        }
+        /* Surface Duo e Pro */
+        @media (min-width: 540px) and (max-width: 767px) {
+            .menu-mobile-btn {
+                display: flex;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: none;
+            }
+            nav.active {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            nav a {
+                font-size: 2rem;
+                text-align: center;
+                display: block;
+                padding: 0.5rem 0;
+            }
+        }
+        /* iPads específicos */
+        @media only screen 
+        and (min-device-width: 768px) 
+        and (max-device-width: 1024px) 
+        and (-webkit-min-device-pixel-ratio: 1) {
+            nav {
+                right: 5%;
+                max-width: 600px;
+            }
+            nav ul {
+                gap: 2rem;
+                justify-content: flex-end;
+                margin-right: 1.5rem;
+            }
+            nav a {
+                font-size: 1.1rem;
+            }
+        }
+        .video-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .video-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content-section {
+            position: relative;
+            z-index: 2;
+            background: #171717;
+            margin-top: 100vh;
+        }
+        .sound-control {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 30;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .sound-control:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        /* Menu Mobile */
+        .menu-mobile-btn {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1.5rem;
+            z-index: 30;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 3rem;
+            height: 3rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile e Surface Duo */
+        @media (max-width: 767px) {
+            .menu-mobile-btn {
+                display: flex;
+            }
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: none;
+            }
+            nav.active {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            nav a {
+                font-size: 2rem;
+                text-align: center;
+                display: block;
+                padding: 0.5rem 0;
+            }
+            /* Redes sociais em mobile */
+            .social-links span {
+                font-size: 1rem !important;
+            }
+            .social-links i {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        /* Tablets e iPads */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            nav {
+                right: 5%;
+                max-width: 600px;
+            }
+            nav ul {
+                gap: 2rem;
+                justify-content: flex-end;
+                margin-right: 1.5rem;
+            }
+            nav a {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body id="inicio" class="bg-neutral-900 min-h-screen" style="font-family: 'Montserrat', sans-serif;">
+    <!-- Menu de navegação fixo no topo -->
+    <nav>
+        <ul class="flex space-x-16 list-none m-0 p-0">
+            <li><a href="#inicio" class="text-white hover:text-black transition-colors font-medium text-[1.25rem]">Início</a></li>
+            <li><a href="#obras" class="text-white hover:text-black transition-colors font-medium text-[1.25rem]">Nossas Obras</a></li>
+            <li><a href="#contato" class="text-white hover:text-black transition-colors font-medium text-[1.25rem]">Contato</a></li>
+            <li><a href="https://wa.me/5513991789578" target="_blank" class="text-white hover:text-green-400 transition-colors font-medium text-[1.25rem]"><i class="fab fa-whatsapp text-4xl"></i></a></li>
+        </ul>
+    </nav>
+    <!-- Botão Menu Mobile -->
+    <button class="menu-mobile-btn">
+        <i class="fas fa-bars"></i>
+    </button>
+    <!-- Hero Section com vídeo ocupando toda a tela -->
+    <section id="inicio" class="video-section">
+        <!-- Logo igual ao da Home -->
+        <div class="absolute top-8 left-8 z-20 md:top-12 md:left-12">
+            <img src="imagens/logowanderlei.png" alt="Wanderlei Logo" class="h-32 md:h-40 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+        </div>
+        <!-- Vídeo ocupando toda a área -->
+        <video autoplay muted loop playsinline id="hero-video">
+            <source src="video/capa.mp4" type="video/mp4">
+            Seu navegador não suporta a exibição de vídeo.
+        </video>
+        <!-- Botão de controle de som -->
+        <button class="sound-control" id="sound-control">
+            <i class="fas fa-volume-mute"></i>
+        </button>
+        <!-- Overlay opcional para contraste do logo -->
+        <div class="absolute inset-0 bg-black bg-opacity-20 pointer-events-none"></div>
+    </section>
+    <!-- Conteúdo após o vídeo -->
+    <div class="content-section">
+        <!-- Seção de Texto Descritivo -->
+        <section id="obras" class="w-full max-w-6xl mx-auto px-4 py-16 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Nossas Obras</h2>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Cada vaso é uma obra única, criada com amor e dedicação pelo artesão Wanderlei. 
+                Nossa coleção apresenta peças exclusivas que combinam técnicas tradicionais com 
+                design contemporâneo, resultando em verdadeiras obras de arte para sua casa.
+                <br>
+                <br>
+                <span class="italic text-yellow-400">"O artista busca refletir em cada peça, um pouco da essência da obra do Criador"</span>
+            </p>
+        </section>
+        <!-- Galeria de Obras -->
+        <main class="w-full max-w-6xl mx-auto px-2 py-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/1.jpeg" alt="Obra 1" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/2.jpeg" alt="Obra 2" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/3.jpeg" alt="Obra 3" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/4.jpeg" alt="Obra 4" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/5.jpeg" alt="Obra 5" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/6.jpeg" alt="Obra 6" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/7.jpeg" alt="Obra 7" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/8.jpeg" alt="Obra 8" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/9.jpeg" alt="Obra 9" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/10.jpeg" alt="Obra 10" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/11.jpeg" alt="Obra 11" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/12.jpeg" alt="Obra 12" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/13.jpeg" alt="Obra 13" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/14.jpeg" alt="Obra 14" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/15.jpeg" alt="Obra 15" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+            </div>
+        </main>
+        <!-- Seção Redes Sociais -->
+        <section id="contato" class="bg-neutral-900 py-8">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl text-white text-center mb-8">Acesse nossas redes sociais ou nos chame pelo WhatsApp:</h2>
+                <div class="flex flex-row items-center justify-center space-x-12">
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/5513991789578" target="_blank" class="text-white hover:text-green-400 transition-colors flex flex-col items-center social-links">
+                        <i class="fab fa-whatsapp text-5xl"></i>
+                        <span class="mt-2 text-2xl">WhatsApp</span>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/artesanato_wanderlei?igsh=MWN0czJxaHUzamw2Ng==" target="_blank" class="text-white hover:text-pink-500 transition-colors flex flex-col items-center social-links">
+                        <i class="fab fa-instagram text-5xl"></i>
+                        <span class="mt-2 text-2xl">Instagram</span>
+                    </a>
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/share/p/169jomrpiN/" target="_blank" class="text-white hover:text-blue-500 transition-colors flex flex-col items-center social-links">
+                        <i class="fab fa-facebook text-5xl"></i>
+                        <span class="mt-2 text-2xl">Facebook</span>
+                    </a>    
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-neutral-950 py-4">
+            <div class="container mx-auto px-4">
+                <p class="text-center text-white text-base flex items-center justify-center">
+                    © 2025 Vasos Artesanais do Wanderlei | Produzido por: 
+                    <a href="#" class="text-white hover:opacity-80 transition-opacity flex items-center">
+                        <img src="imagens/logoj3.png" alt="J3 Digital Mídia" class="inline-block h-8 ml-1 -mt-1">
+                    </a>
+                </p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        // Menu Mobile Toggle
+        const menuBtn = document.querySelector('.menu-mobile-btn');
+        const nav = document.querySelector('nav');
+        if(menuBtn && nav) {
+            menuBtn.addEventListener('click', () => {
+                nav.classList.toggle('active');
+                menuBtn.querySelector('i').classList.toggle('fa-bars');
+                menuBtn.querySelector('i').classList.toggle('fa-times');
+            });
+        }
+
+        // Controle de Som
+        const video = document.getElementById('hero-video');
+        const soundControl = document.getElementById('sound-control');
+        const soundIcon = soundControl.querySelector('i');
+
+        soundControl.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                soundIcon.classList.remove('fa-volume-mute');
+                soundIcon.classList.add('fa-volume-up');
+            } else {
+                video.muted = true;
+                soundIcon.classList.remove('fa-volume-up');
+                soundIcon.classList.add('fa-volume-mute');
+            }
+        });
+
+        // Smooth Scroll com velocidade equilibrada
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Fecha o menu mobile se estiver aberto
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        menuBtn.querySelector('i').classList.add('fa-bars');
+                        menuBtn.querySelector('i').classList.remove('fa-times');
+                    }
+
+                    // Calcula a posição do elemento alvo
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 1000; // Duração em milissegundos (1 segundo)
+                    let start = null;
+
+                    // Função de animação com velocidade equilibrada
+                    function animation(currentTime) {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const progress = Math.min(timeElapsed / duration, 1);
+                        
+                        // Função de easing suave
+                        const easeOutQuad = progress => {
+                            return 1 - (1 - progress) * (1 - progress);
+                        };
+
+                        window.scrollTo(0, startPosition + distance * easeOutQuad(progress));
+
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        }
+                    }
+
+                    requestAnimationFrame(animation);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

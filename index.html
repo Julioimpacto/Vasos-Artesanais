@@ -319,8 +319,13 @@
             <img src="imagens/logowanderlei.png" alt="Wanderlei Logo" class="h-32 md:h-40 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
         </div>
         <!-- Vídeo ocupando toda a área -->
-        <video autoplay muted loop playsinline id="hero-video">
+        <video autoplay muted loop playsinline id="hero-video" class="hidden md:block">
             <source src="video/capa.mp4" type="video/mp4">
+            Seu navegador não suporta a exibição de vídeo.
+        </video>
+        <!-- Vídeo Mobile -->
+        <video autoplay muted loop playsinline id="hero-video-mobile" class="block md:hidden">
+            <source src="video/capa2.mp4" type="video/mp4">
             Seu navegador não suporta a exibição de vídeo.
         </video>
         <!-- Botão de controle de som -->
@@ -392,6 +397,15 @@
                 <div class="overflow-hidden rounded-lg group">
                     <img src="imagens/15.jpeg" alt="Obra 15" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
                 </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/16.jpeg" alt="Obra 16" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/17.jpeg" alt="Obra 17" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
+                <div class="overflow-hidden rounded-lg group">
+                    <img src="imagens/18.jpeg" alt="Obra 18" class="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                </div>
             </div>
         </main>
         <!-- Seção Redes Sociais -->
@@ -443,19 +457,28 @@
 
         // Controle de Som
         const video = document.getElementById('hero-video');
+        const videoMobile = document.getElementById('hero-video-mobile');
         const soundControl = document.getElementById('sound-control');
         const soundIcon = soundControl.querySelector('i');
 
         soundControl.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
+            const currentVideo = window.innerWidth < 768 ? videoMobile : video;
+            if (currentVideo.muted) {
+                currentVideo.muted = false;
                 soundIcon.classList.remove('fa-volume-mute');
                 soundIcon.classList.add('fa-volume-up');
             } else {
-                video.muted = true;
+                currentVideo.muted = true;
                 soundIcon.classList.remove('fa-volume-up');
                 soundIcon.classList.add('fa-volume-mute');
             }
+        });
+
+        // Atualiza o vídeo quando a tela é redimensionada
+        window.addEventListener('resize', () => {
+            const isMobile = window.innerWidth < 768;
+            video.style.display = isMobile ? 'none' : 'block';
+            videoMobile.style.display = isMobile ? 'block' : 'none';
         });
 
         // Smooth Scroll com velocidade equilibrada
